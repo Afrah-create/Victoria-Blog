@@ -191,16 +191,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ══ Journal — Interactions ══
-  const readMoreButtons = document.querySelectorAll('.read-more');
-  readMoreButtons.forEach((button) => {
+  // ══ Journal — Read more / extended note ══
+  document.querySelectorAll('.read-more').forEach((button) => {
     button.addEventListener('click', () => {
       const row = button.closest('.journal-row');
-      if (!row) return;
-      const paragraph = row.querySelector('p');
-      if (!paragraph) return;
-      paragraph.classList.toggle('is-expanded');
-      button.textContent = paragraph.classList.contains('is-expanded') ? 'Close note' : 'Read note';
+      const more = row?.querySelector('.journal-row__more');
+      if (!row || !more) return;
+      const willOpen = more.hidden;
+      more.hidden = !willOpen;
+      const isOpen = !more.hidden;
+      button.setAttribute('aria-expanded', String(isOpen));
+      button.textContent = isOpen ? 'Close note' : 'Read note';
     });
   });
 

@@ -535,8 +535,22 @@ p { font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-text-muted); }
 .journal-row h3 {
   text-wrap: balance;
 }
-.journal-row p {
+.journal-row__lead,
+.journal-row__more p {
   max-width: 60ch;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.35vw, 1.0625rem);
+  line-height: 1.65;
+}
+.journal-row__more {
+  margin-top: 0.65rem;
+  padding-top: 0.65rem;
+  border-top: 1px dashed var(--color-border);
+  display: grid;
+  gap: 0.75rem;
+}
+.journal-row__more[hidden] {
+  display: none !important;
 }
 .journal-row time {
   font-size: 0.82rem;
@@ -544,10 +558,19 @@ p { font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-text-muted); }
   letter-spacing: 0.12em;
 }
 .read-more {
-  margin-top: 10px;
+  margin-top: 0.35rem;
+  justify-self: start;
   color: var(--color-accent-dark);
   border-bottom: 1px solid var(--color-lilac-muted);
   min-height: 44px;
+  padding: 4px 0;
+  text-align: left;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.read-more:hover,
+.read-more:focus-visible {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 /* ══ Contact ══ */
