@@ -148,10 +148,21 @@ p { font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-text-muted); }
 .brand {
   display: inline-flex;
   align-items: center;
+  gap: clamp(8px, 1.6vw, 14px);
+  min-width: 0;
 }
 .brand img {
-  width: clamp(108px, 14vw, 160px);
+  width: clamp(52px, 10vw, 88px);
   height: auto;
+  flex-shrink: 0;
+}
+.brand-text {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 3.2vw, 1.45rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 .nav-links {
   display: none;
@@ -670,6 +681,12 @@ p { font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-text-muted); }
   .hero {
     min-height: calc(100vh - 96px);
   }
+  .brand img {
+    width: clamp(60px, 8vw, 92px);
+  }
+  .brand-text {
+    font-size: clamp(1.05rem, 1.8vw, 1.5rem);
+  }
   .about-grid {
     grid-template-columns: 1.25fr 1fr;
     grid-template-areas:
@@ -706,6 +723,9 @@ p { font-size: clamp(1rem, 1.4vw, 1.125rem); color: var(--color-text-muted); }
   }
   .site-nav {
     padding-block: 20px;
+  }
+  .brand img {
+    width: clamp(64px, 6vw, 96px);
   }
   .nav-links {
     display: flex;
