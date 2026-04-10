@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
       const success = document.createElement('div');
       success.className = 'contact-success';
-      success.innerHTML = '<h3>Thank you for reaching out to Victoria Oils.</h3><p>Your message has been received with care. Victoria will respond thoughtfully as soon as possible.</p>';
+      success.innerHTML = '<h3>Thank you for getting in touch.</h3><p>I’ve received your message and will reply as soon as I can.</p>';
       contactForm.replaceWith(success);
     });
   }
