@@ -134,6 +134,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const getVisibleItems = () => Array.from(galleryItems).filter((item) => !item.classList.contains('is-hidden'));
 
+  const categoryLabels = {
+    social: 'Social Narrative',
+    process: 'Process',
+    gallery: 'Gallery',
+  };
+
   const updateLightbox = (index) => {
     const visibleItems = getVisibleItems();
     if (!visibleItems.length || !lightboxImage || !lightboxTitle || !lightboxMeta || !lightboxDescription) return;
@@ -142,14 +148,18 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxImage.src = item.dataset.src || '';
     lightboxImage.alt = item.dataset.title || 'Artwork preview';
     lightboxTitle.textContent = item.dataset.title || '';
-    lightboxMeta.textContent = item.dataset.category || '';
+    const cat = item.dataset.category || '';
+    lightboxMeta.textContent = categoryLabels[cat] || cat || '';
     lightboxDescription.textContent = item.dataset.description || '';
   };
 
-  const openLightbox = (index) => {
-    if (!lightbox) return;
+  const openLightbox = (clickedItem) => {
+    if (!lightbox || !(clickedItem instanceof HTMLElement)) return;
+    const visibleItems = getVisibleItems();
+    const idx = visibleItems.indexOf(clickedItem);
+    if (idx === -1) return;
     lastFocusedElement = document.activeElement;
-    updateLightbox(index);
+    updateLightbox(idx);
     lightbox.classList.add('is-open');
     lightbox.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -166,12 +176,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  galleryItems.forEach((item, index) => {
-    item.addEventListener('click', () => openLightbox(index));
+  galleryItems.forEach((item) => {
+    item.addEventListener('click', () => openLightbox(item));
     item.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
         event.preventDefault();
-        openLightbox(index);
+        openLightbox(item);
       }
     });
   });
